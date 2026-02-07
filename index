@@ -15,7 +15,7 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Kontener strony — PRZYWRÓCONE MARGINESY */
+/* Kontener strony */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -89,14 +89,14 @@ nav#menu-top a.active {
     font-weight: bold;
 }
 
-/* Layout główny */
+/* Layout */
 #layout-container {
     display: flex;
     gap: 24px;
     padding: 20px 0;
 }
 
-/* Lewe menu — szerzej, ale stabilnie */
+/* Lewe menu */
 #menu-left {
     width: 250px;
     flex-shrink: 0;
@@ -112,7 +112,7 @@ nav#menu-top a.active {
 #menu-left li {
     margin-bottom: 10px;
 }
-#menu-left a, 
+#menu-left a,
 #menu-left span {
     display: block;
     padding: 8px 10px;
@@ -136,23 +136,23 @@ nav#menu-top a.active {
     background-color: #dcdcdc;
 }
 
-/* Główna kolumna — SZERSZA */
+/* Główna kolumna */
 #layout-main-content {
     flex: 1;
     min-width: 0;
 }
 
 /* ===== KAFELKI ===== */
+
 usos-module-link-tile-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 1.2rem;
 }
 
-/* Kafelek — prostokąt większy, tekst dopasowuje się */
 usos-module-link-tile {
     display: block;
-    height: 160px; /* wysokość kafelka */
+    height: 160px;
     background: #f8f8f8;
     border-radius: 12px;
     padding: 0;
@@ -165,17 +165,17 @@ usos-module-link-tile:hover {
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-/* Link wewnątrz kafelka */
+/* 🔗 Link w kafelku */
 usos-module-link-tile > template > a {
     display: flex;
-    align-items: center;
+    align-items: center; /* obrazek pionowo w środku */
     gap: 14px;
-    padding: 10px;
+    padding: 5px;
     height: 100%;
     text-decoration: none;
 }
 
-/* Ikona po lewej */
+/* Ikona */
 usos-module-link-tile #icon {
     width: 110px;
     height: 110px;
@@ -185,31 +185,33 @@ usos-module-link-tile #icon {
     background-position: center;
 }
 
-/* Tekst po prawej, dopasowany do kafelka */
+/* 🔧 Tekst (tytuł + opis) */
 usos-module-link-tile #content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* ustawienie na start zamiast center */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* wyśrodkowanie pionowe całego tekstu */
     text-align: left;
     flex: 1;
-    padding: 2px 0; /* mały padding wewnętrzny */
+    gap: 2px;
 }
 
-/* Tytuł i opis z minimalnym odstępem */
+/* Tytuł i opis */
 usos-module-link-tile #title {
     font-weight: bold;
-    font-size: clamp(0.9rem, 1vw, 1rem);
-    margin-bottom: 1px; /* minimalny odstęp */
-    line-height: 1.1;   /* zmniejszona wysokość linii dla mniejszej przestrzeni */
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem); /* trochę większy niż opis */
+    margin: 0;
+    line-height: 1.2;
 }
 
 usos-module-link-tile #text {
-    font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+    font-size: clamp(0.8rem, 0.95vw, 0.85rem);
     color: #333;
-    line-height: 1.2;  /* lekko zwiększony dla czytelności */
+    line-height: 1.2;
+    margin: 0;
 }
 
 /* ===== RESPONSYWNOŚĆ ===== */
+
 @media (max-width: 900px) {
     usos-module-link-tile {
         height: 140px;
@@ -219,23 +221,6 @@ usos-module-link-tile #text {
         height: 90px;
     }
 }
-
-@media (max-width: 520px) {
-    usos-module-link-tile > template > a {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    usos-module-link-tile #icon {
-        margin-bottom: 10px;
-    }
-    usos-module-link-tile #content {
-        justify-content: center;
-        text-align: center;
-    }
-}
-
-/* ===== MOBILE ===== */
 
 @media (max-width: 900px) {
     #layout-container {
@@ -255,7 +240,18 @@ usos-module-link-tile #text {
     usos-module-link-tile-container {
         grid-template-columns: 1fr;
     }
+
+    usos-module-link-tile > template > a {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    usos-module-link-tile #content {
+        align-items: center;
+    }
 }
+
 </style>
 </head>
 
@@ -354,9 +350,9 @@ usos-module-link-tile #text {
 <usos-module-link-tile id="rejestracje_link" href="#rejestracje_box">
     <template shadowrootmode="open">
         <a href="#rejestracja" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
                 
-                <!-- Ikona po lewej (teraz jako background-image) -->
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -370,26 +366,24 @@ usos-module-link-tile #text {
                      ">
                 </div>
 
-                <!-- Tekst po prawej -->
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Rejestracja</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Zarejestruj się na przedmioty lub egzaminy, obejrzyj koszyk.</div>
                 </div>
-
             </div>
         </a>
     </template>
-
-    <h2 slot="title">Rejestracja</h2>
-    <p slot="text">Zarejestruj się na przedmioty lub egzaminy, obejrzyj koszyk.</p>
 </usos-module-link-tile>
 
 
- <!-- Sprawdziany -->
+<!-- Sprawdziany -->
 <usos-module-link-tile id="sprawdziany_link" href="#sprawdziany_box">
     <template shadowrootmode="open">
         <a href="#sprawdziany" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -402,24 +396,27 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Sprawdziany</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Zadania, sprawdziany, egzaminy, oceny i związki między nimi.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Sprawdziany</h2>
-    <p slot="text">Zadania, sprawdziany, egzaminy, oceny i związki między nimi.</p>
 </usos-module-link-tile>
+
+
+
 
 <!-- Oceny końcowe -->
 <usos-module-link-tile id="oceny_link" href="#oceny_box">
     <template shadowrootmode="open">
         <a href="#oceny" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:5px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
                 
-                <!-- Ikona po lewej -->
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -433,30 +430,26 @@ usos-module-link-tile #text {
                      ">
                 </div>
 
-                <!-- Tekst po prawej -->
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; flex:1;">
-                    <div id="title" style="font-weight:bold; font-size:clamp(0.9rem, 1vw, 1rem); margin-bottom:2px; line-height:1.1;">
-                        <slot name="title"></slot>
-                    </div>
-                    <div id="text" style="font-size:clamp(0.75rem, 0.9vw, 0.85rem); color:#333; line-height:1.15;">
-                        <slot name="text"></slot>
-                    </div>
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Oceny końcowe</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Aktualne wartości ocen końcowych z zaliczanych przedmiotów.</div>
                 </div>
-
             </div>
         </a>
     </template>
-
-    <h2 slot="title">Oceny końcowe</h2>
-    <p slot="text">Aktualne wartości ocen końcowych z zaliczanych przedmiotów.</p>
 </usos-module-link-tile>
+
+
 
 
 <!-- Podpięcia -->
 <usos-module-link-tile id="podpiecia_link" href="#podpiecia_box">
     <template shadowrootmode="open">
         <a href="#podpiecia" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -469,22 +462,28 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Podpięcia</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Wskaż związek zaliczanego przedmiotu z programem studiów.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Podpięcia</h2>
-    <p slot="text">Wskaż związek zaliczanego przedmiotu z programem studiów.</p>
 </usos-module-link-tile>
+
+
+
+
 
 <!-- Decyzje -->
 <usos-module-link-tile id="decyzje_link" href="#decyzje_box">
     <template shadowrootmode="open">
         <a href="#decyzje" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -497,22 +496,29 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Decyzje</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Zobacz i uzupełnij decyzje dziekanatu związane z Twoimi studiami.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Decyzje</h2>
-    <p slot="text">Zobacz i uzupełnij decyzje dziekanatu związane z Twoimi studiami.</p>
 </usos-module-link-tile>
+
+
+
+
+
 
 <!-- Zaliczenia etapów -->
 <usos-module-link-tile id="zaliczenia_link" href="#zaliczenia_box">
     <template shadowrootmode="open">
         <a href="#zaliczenia" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -525,22 +531,26 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Zaliczenia etapów</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Sprawdź swoje osiągnięcia i spełnienie wymagań etapowych.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Zaliczenia etapów</h2>
-    <p slot="text">Sprawdź swoje osiągnięcia i spełnienie wymagań etapowych.</p>
 </usos-module-link-tile>
+
+
 
 <!-- Podania -->
 <usos-module-link-tile id="podania_link" href="#podania_box">
     <template shadowrootmode="open">
         <a href="#podania" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -553,22 +563,29 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Podania</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Składaj podania do dziekana, przeglądaj podjęte decyzje.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Podania</h2>
-    <p slot="text">Składaj podania do dziekana, przeglądaj podjęte decyzje.</p>
 </usos-module-link-tile>
+
+
+
+
+
 
 <!-- Rankingi -->
 <usos-module-link-tile id="rankingi_link" href="#rankingi_box">
     <template shadowrootmode="open">
         <a href="#rankingi" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -581,22 +598,31 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Rankingi</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Zobacz swoje pozycje w rankingach..</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Rankingi</h2>
-    <p slot="text">Zobacz swoje pozycje w rankingach.</p>
 </usos-module-link-tile>
+
+
+
+
+
+
+
 
 <!-- Stypendia -->
 <usos-module-link-tile id="stypendia_link" href="#stypendia_box">
     <template shadowrootmode="open">
         <a href="#stypendia" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -609,22 +635,31 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Stypendia</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Sprawdź przyznane stypendia, zmień numer konta.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Stypendia</h2>
-    <p slot="text">Sprawdź przyznane stypendia, zmień numer konta.</p>
 </usos-module-link-tile>
+
+
+
+
+
+
+
 
 <!-- Wymiana studencka -->
 <usos-module-link-tile id="wymiana_link" href="#wymiana_box">
     <template shadowrootmode="open">
         <a href="#wymiana" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -637,22 +672,30 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Wymiana studencka</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Przeglądaj możliwości wymiany studenckiej w ramach programu Erasmus+.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Wymiana studencka</h2>
-    <p slot="text">Przeglądaj możliwości wymiany studenckiej w ramach programu Erasmus+.</p>
 </usos-module-link-tile>
+
+
+
+
+
+
 
 <!-- Ankiety -->
 <usos-module-link-tile id="ankiety_link" href="#ankiety_box">
     <template shadowrootmode="open">
         <a href="#ankiety" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -665,22 +708,31 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Ankiety</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Wypełnij i oglądaj wyniki ankiet.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Ankiety</h2>
-    <p slot="text">Wypełnij i oglądaj wyniki ankiet.</p>
 </usos-module-link-tile>
+
+
+
+
+
+
+
 
 <!-- Dyplomy -->
 <usos-module-link-tile id="dyplomy_link" href="#dyplomy_box">
     <template shadowrootmode="open">
         <a href="#dyplomy" style="text-decoration:none; display:block;">
-            <div style="display:flex; align-items:center; gap:14px; padding:10px; min-height:80px;">
+            <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
+                
+                <!-- Obrazek po lewej -->
                 <div id="icon" aria-hidden="true"
                      style="
                         width:94px;
@@ -693,19 +745,23 @@ usos-module-link-tile #text {
                         background-position: center;
                      ">
                 </div>
-                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left;">
-                    <div id="title" style="font-weight:bold; font-size:1rem; margin-bottom:4px;"><slot name="title"></slot></div>
-                    <div id="text" style="font-size:0.85rem; color:#333;"><slot name="text"></slot></div>
+
+                <!-- Tekst wyśrodkowany pionowo -->
+                <div id="content" style="display:flex; flex-direction:column; justify-content:center; text-align:left; height:100%;">
+                    <div style="font-weight:bold; font-size:1rem;">Dyplomy</div>
+                    <div style="font-size:0.85rem; color:#333; margin-top:2px;">Zobacz swoje dyplomy.</div>
                 </div>
             </div>
         </a>
     </template>
-    <h2 slot="title">Dyplomy</h2>
-    <p slot="text">Zobacz swoje dyplomy.</p>
 </usos-module-link-tile>
 
+
+
+
+
+
+
 </main>
-
-
 </body>
 </html>
