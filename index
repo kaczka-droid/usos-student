@@ -318,7 +318,7 @@ usos-module-link-tile #text {
                 <li>
                     <span>MOJE STUDIA</span>
                     <ul class="submenu">
-                        <li><a href="#sprawdziany">► sprawdziany</a></li>
+                        <li><a href="sprawdziany.html">► sprawdziany</a></li>
                         <li><a href="#oceny">► oceny</a></li>
                         <li><a href="#podpiecia">► podpięcia</a></li>
                         <li><a href="#deklaracja">► deklaracja</a></li>
@@ -380,7 +380,7 @@ usos-module-link-tile #text {
 <!-- Sprawdziany -->
 <usos-module-link-tile id="sprawdziany_link" href="#sprawdziany_box">
     <template shadowrootmode="open">
-        <a href="#sprawdziany" style="text-decoration:none; display:block;">
+        <a href="sprawdziany.html" style="text-decoration:none; display:block;">
             <div style="display:flex; align-items:center; gap:14px; padding:30px; min-height:80px;">
                 
                 <!-- Obrazek po lewej -->
@@ -765,3 +765,11 @@ usos-module-link-tile #text {
 </main>
 </body>
 </html>
+
+
+
+
+
+
+
+
